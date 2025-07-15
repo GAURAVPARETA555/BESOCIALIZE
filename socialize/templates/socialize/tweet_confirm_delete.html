@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}
+BE SOCIALIZE {% endblock %}
+{% block content %}
+<h1 class="text-center text-white mt-5">welcome to BE SOCIALIZE</h1>
+<h1 class="text-center text-white mt-5">DELETE TWEET</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn danger">DELETE</button>
+    <a class = "btn btn-success" href="{% url 'tweet_list'%}"> back</a>
+</form>
+{% endblock %}

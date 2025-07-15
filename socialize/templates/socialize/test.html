@@ -1,0 +1,74 @@
+
+{% extends "tweet_list.html" %}
+{% block content %}
+<h1 class="text-center text-white mt-5">welcome to BE SOCIALIZE</h1>
+
+<p class="text-base text-gray-200 leading-relaxed tracking-wide">
+    Your paragraph content here.
+  </p>
+  
+  <p class="text-light fs-5 lh-lg fst-italic">
+    This is a stylized paragraph with spacing and light tone.
+  </p>
+  <h2 class="display-6 text-white fw-bold text-uppercase mb-3">
+    Section Heading
+  </h2>
+  
+  <blockquote class="blockquote border-start ps-3 border-3 border-primary text-light">
+    <p>“Inspiring quote here.”</p>
+  </blockquote>
+  <blockquote class="italic border-l-4 pl-4 border-blue-400 text-gray-100">
+    “Quote or message here”
+  </blockquote>
+  <h2 class="text-3xl font-bold text-white uppercase tracking-wider mb-4">
+    Your Section Heading
+  </h2>
+  <p class="text-base text-gray-200 leading-relaxed tracking-wide">
+    This is a calm and readable paragraph style for dark backgrounds.
+  </p>
+  <p class="text-xl font-semibold text-white italic tracking-widest">
+    This is a stylized and prominent sentence.
+  </p>
+  <p class="text-lg font-medium text-yellow-400">
+    Warning: Action required!
+  </p>
+  <h2 class="text-3xl font-bold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
+    Stunning Gradient Title
+  </h2>
+  <p class="text-light fs-5 lh-base">
+    This is standard readable Bootstrap paragraph text.
+  </p>
+  <p class="fst-italic fw-light text-muted text-center">
+    Italic muted note, center aligned.
+  </p>
+
+  <p class="text-danger fw-bold">
+    Error: Something went wrong.
+  </p>
+  <p class="text-info d-flex align-items-center gap-2">
+    <i class="bi bi-info-circle-fill"></i> Information message here
+  </p>
+  {% for tweet in tweets %}
+<!-- Comments Section -->
+<div class="px-3 pb-3">
+    <h6 class="text-white">Comments:</h6>
+    <ul class="list-unstyled text-light" style="max-height: 100px; overflow-y: auto;">
+      {% for comment in tweet.comments.all %}
+        <li><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</li>
+      {% empty %}
+        <li>No comments yet.</li>
+      {% endfor %}
+    </ul>
+  
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'comment' tweet.id %}">
+      {% csrf_token %}
+      <div class="d-flex mt-2">
+        <input type="text" name="comment_text" class="form-control me-2" placeholder="Add a comment..." required>
+        <button type="submit" class="btn btn-sm btn-warning">Post</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+  {% endfor %}
+{% endblock %}

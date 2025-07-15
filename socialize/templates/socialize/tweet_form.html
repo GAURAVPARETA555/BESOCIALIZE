@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}BE SOCIALIZE - {% if form.instance.pk %}Edit{% else %}Create{% endif %} Tweet{% endblock %}
+
+{% block content %}
+<section class="py-5" style="background: linear-gradient(to right, #141e30, #243b55); min-height: 100vh;">
+  <div class="container d-flex justify-content-center align-items-center flex-column text-white">
+    
+    <h1 class="fw-bold mb-3">BE SOCIALIZE</h1>
+    <h3 class="mb-4">
+      {% if form.instance.pk %}
+        ✏️ Edit Your Tweet
+      {% else %}
+        📝 Create a New Tweet
+      {% endif %}
+    </h3>
+
+    <div class="card shadow-lg p-4 rounded-4 bg-dark bg-opacity-75" style="max-width: 600px; width: 100%;">
+      <form method="post" enctype="multipart/form-data" class=" text-white">
+        {% csrf_token %}
+        <!-- Form fields styled nicely -->
+        {{ form.as_p }}
+        <div class="d-grid gap-2 mt-3">
+          <button type="submit" class="btn btn-warning btn-rounded  fw-semibold" data-mdb-ripple-init>Submit</button>
+          <a href="{% url 'tweet_list' %}" class="btn btn-outline-light">Back to Home</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

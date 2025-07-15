@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}BE SOCIALIZE - Connect Freely{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="text-center text-white py-5" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364); min-height: 100vh;">
+  <div class="container d-flex flex-column justify-content-center align-items-center h-100">
+    <h1 class="display-2 fw-bold mb-3">Welcome to <span class="text-warning">BE 
+      Socialize <i class="fab fa-angellist"></i></span></h1>
+    <p class="lead mb-4 w-75">A space to share moments, connect with friends, and discover trending content. Simple. Powerful. Social.</p>
+    
+    <!-- CTA Buttons -->
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+      <a href="{% url 'tweet_list' %}" class="btn btn-outline-light btn-lg px-4">Explore Tweets</a>
+      <a href="{% url 'login' %}" class="btn btn-warning btn-lg px-4 text-dark">Login / Signup</a>
+    </div>
+
+    <!-- Hero Image -->
+    <img src="{% static 'images/banner.jpg' %}" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px;" alt="Social banner">
+  </div>
+</section>
+
+<!-- Feature Section -->
+<section class="py-5 bg-light text-dark text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Why Choose BE SOCIALIZE?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow h-100">
+          <div class="card-body">
+            <i class="fas fa-bolt fa-3x text-warning mb-3"></i>
+            <h5 class="card-title">Instant Sharing</h5>
+            <p class="card-text">Create posts instantly with image support, tags, and powerful formatting tools.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow h-100">
+          <div class="card-body">
+            <i class="fas fa-users fa-3x text-warning mb-3"></i>
+            <h5 class="card-title">Stay Connected</h5>
+            <p class="card-text">Discover trending tweets, follow users, and interact in real time.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow h-100">
+          <div class="card-body">
+            <i class="fas fa-shield-alt fa-3x text-warning mb-3"></i>
+            <h5 class="card-title">Safe & Secure</h5>
+            <p class="card-text">Your posts are safe with us. Edit, delete, and control your content anytime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
