@@ -1,1 +1,1 @@
-web: gunicorn besocialize.wsgi
+web: gunicorn BESocialize.wsgi:application
