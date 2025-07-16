@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'insecure-default-for-dev')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").split(",")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
+
 
 
 
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     
 ]
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'BESocialize.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'website.wsgi.application'
+WSGI_APPLICATION = 'BESocialize.wsgi.application'
 
 
 # Database
