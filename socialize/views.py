@@ -43,7 +43,7 @@ def tweet_create(request):
           tweet.save()
           return redirect ('tweet_list')      
     else:
-        form =Tweetform()
+        form =Tweetform()       # M@d@rch#d18
     return render(request,'socialize/tweet_form.html',{'form':form})
 
 @login_required
@@ -82,7 +82,7 @@ def register(request):
          activation_link=request.build_absolute_uri(reverse('activate',kwargs={'uidb64':uid,'token' :token})) 
          subject='Activate Your Account -BE SOCIALIZE'
          message=f'Hi {user.username},\n\nPlease click the link below to verify your account:\n\n{activation_link} '
-         send_mail(subject,message,settings.EMAIL_HOST_USER,[user.email])
+         send_mail(subject,message,settings.DEFAULT_FROM_EMAIL,[user.email],fail_silently=False)
 
 
 
