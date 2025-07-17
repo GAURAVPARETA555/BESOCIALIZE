@@ -43,7 +43,7 @@ def tweet_create(request):
           tweet.save()
           return redirect ('tweet_list')      
     else:
-        form =Tweetform()       # M@d@rch#d18
+        form =Tweetform()       
     return render(request,'socialize/tweet_form.html',{'form':form})
 
 @login_required
@@ -95,7 +95,7 @@ def register(request):
     return render(request,'registration/register.html',{'form':form})
 
 
-def User_login(request,User):
+def User_login(request):
    if request.method=='POST':
       username= request.POST['username']
       password = request.POST['password']
@@ -104,7 +104,7 @@ def User_login(request,User):
          login(request,user)
          return redirect('tweet_list')
       else:
-         return redirect(request,'registration/login.html',{'error' :'Invalid credentials'})
+         return render(request,'registration/login.html',{'error' :'Invalid credentials'})
    return render(request,'registration/login.html') 
 @login_required 
 def User_logout(request):
