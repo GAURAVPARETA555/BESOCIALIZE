@@ -14,6 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.encoding import force_str
+from django.conf import settings 
 # Create your views here.
 from django.http import JsonResponse
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
@@ -81,7 +82,7 @@ def register(request):
          activation_link=request.build_absolute_uri(reverse('activate',kwargs={'uidb64':uid,'token' :token})) 
          subject='Activate Your Account -BE SOCIALIZE'
          message=f'Hi {user.username},\n\nPlease click the link below to verify your account:\n\n{activation_link} '
-         send_mail(subject,message,EMAIL_HOST_USER,[user.email])
+         send_mail(subject,message,settings.EMAIL_HOST_USER,[user.email])
 
 
 
