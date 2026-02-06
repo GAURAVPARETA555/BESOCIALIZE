@@ -82,13 +82,14 @@ def register(request):
          activation_link=request.build_absolute_uri(reverse('activate',kwargs={'uidb64':uid,'token' :token})) 
          subject='Activate Your Account -BE SOCIALIZE'
          message=f'Hi {user.username},\n\nPlease click the link below to verify your account:\n\n{activation_link} '
-         send_mail(subject,message,settings.DEFAULT_FROM_EMAIL,[user.email],fail_silently=False)
+      try:
+          send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
+      except Exception as e:
+          print("Email error:", e)
+          messages.warning(request, "Could not send confirmation email.")
 
-
-
-
-         messages.success(request,"Please check your email to activate your account ")
-         return redirect('login')
+      messages.success(request,"Please check your email to activate your account ")
+      return redirect('login')
     else:
         form =CustomRegisterForm()
 
@@ -104,12 +105,14 @@ def User_login(request):
          login(request,user)
          return redirect('tweet_list')
       else:
-         return render(request,'registration/login.html',{'error' :'Invalid credentials'})
+         messages.error(request, "Invalid username or password.")
    return render(request,'registration/login.html') 
 @login_required 
 def User_logout(request):
     logout(request)
-    return redirect(request,'socialize/tweet_list.html')    
+    messages.success(request, "Logged out successfully.")
+    return redirect('tweet_list')
+   
    
 def search_result(request):
    querry=request.GET.get('q')
@@ -177,4 +180,4 @@ def activate_account(request, uidb64, token):
          
          
       
-   
+   #LOki@12345
